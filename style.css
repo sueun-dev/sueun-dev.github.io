@@ -426,6 +426,12 @@ section {
 .project-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.timeline-content .project-links {
+    margin-top: 1rem;
 }
 
 .project-links a {
