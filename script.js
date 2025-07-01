@@ -4,6 +4,7 @@ const navMenu = document.querySelector('.nav-menu');
 
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
 });
 
 // Smooth scrolling for navigation links
@@ -18,6 +19,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
             // Close mobile menu if open
             navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
         }
     });
 });
