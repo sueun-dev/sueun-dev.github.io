@@ -123,6 +123,37 @@ projectCards.forEach(card => {
     });
 });
 
+// Handle window resize for responsive behavior
+function handleResize() {
+    const heroVisual = document.querySelector('.hero-visual');
+    const navMenu = document.querySelector('.nav-menu');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (window.innerWidth > 768) {
+        // Desktop: Show hero visual, hide mobile menu
+        if (heroVisual) heroVisual.style.display = 'block';
+        if (navMenu) navMenu.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+    } else {
+        // Mobile: Ensure hero visual is visible with proper scaling
+        if (heroVisual) {
+            heroVisual.style.display = 'block';
+        }
+    }
+}
+
+// Listen for window resize
+window.addEventListener('resize', handleResize);
+window.addEventListener('load', handleResize);
+
+// Ensure blockchain animation visibility on all screen sizes
+document.addEventListener('DOMContentLoaded', () => {
+    const heroVisual = document.querySelector('.hero-visual');
+    if (heroVisual) {
+        heroVisual.style.display = 'block';
+    }
+});
+
 // Console message
 console.log('%c👋 Hello! Welcome to Sueun Cho\'s portfolio', 'color: #6366f1; font-size: 20px; font-weight: bold;');
 console.log('%cInterested in working together? Let\'s connect!', 'color: #8b5cf6; font-size: 16px;');
