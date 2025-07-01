@@ -258,50 +258,69 @@ body {
     gap: clamp(1rem, 3vw, 2rem);
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
 }
 
 .block {
     width: clamp(60px, 10vw, 100px);
     height: clamp(60px, 10vw, 100px);
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 0.75rem;
     position: relative;
-    animation: float 3s ease-in-out infinite;
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-    transform-style: preserve-3d;
+    animation: gentleFloat 4s ease-in-out infinite;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    transition: all 0.3s ease;
+}
+
+.block:nth-child(1) {
+    animation-delay: 0s;
 }
 
 .block:nth-child(2) {
-    animation-delay: 0.5s;
+    animation-delay: 1.3s;
 }
 
 .block:nth-child(3) {
-    animation-delay: 1s;
+    animation-delay: 2.6s;
 }
 
-@keyframes float {
+.block:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.6);
+}
+
+@keyframes gentleFloat {
     0%, 100% { 
-        transform: translateY(0) rotateY(0deg);
+        transform: translateY(0px);
     }
     50% { 
-        transform: translateY(-20px) rotateY(180deg);
+        transform: translateY(-15px);
     }
 }
 
 .block::before {
     content: '';
     position: absolute;
-    width: clamp(20px, 3vw, 30px);
-    height: 3px;
-    background: var(--text-secondary);
-    left: calc(-1 * clamp(20px, 3vw, 30px));
+    width: clamp(15px, 2.5vw, 25px);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    left: calc(-1 * clamp(15px, 2.5vw, 25px));
     top: 50%;
     transform: translateY(-50%);
+    opacity: 0.6;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .block:first-child::before {
     display: none;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 0.4; 
+    }
+    50% { 
+        opacity: 0.8; 
+    }
 }
 
 /* Sections */
