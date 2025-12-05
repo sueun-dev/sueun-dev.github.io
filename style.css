@@ -600,7 +600,8 @@ section {
     .nav-menu {
         position: fixed;
         left: 0;
-        top: -100%;
+        top: 0;
+        transform: translateY(-100%);
         gap: 0;
         flex-direction: column;
         background-color: #050505;
@@ -610,10 +611,14 @@ section {
         transition: 0.3s ease-in-out;
         justify-content: center;
         z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
     }
 
     .nav-menu.active {
-        top: 0;
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
     }
 
     .nav-item {
