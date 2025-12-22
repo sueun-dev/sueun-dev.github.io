@@ -1,0 +1,26 @@
+{
+  "name": "sueun-dev.github.io",
+  "version": "1.0.0",
+  "description": "Sueun Cho portfolio site",
+  "main": "script.js",
+  "scripts": {
+    "purgecss": "purgecss --config purgecss.config.js --output dist",
+    "coverage": "node tools/coverage.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sueun-dev/sueun-dev.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sueun-dev/sueun-dev.github.io/issues"
+  },
+  "homepage": "https://github.com/sueun-dev/sueun-dev.github.io#readme",
+  "devDependencies": {
+    "puppeteer-core": "^24.34.0",
+    "purgecss": "^7.0.2"
+  }
+}

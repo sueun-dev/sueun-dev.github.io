@@ -162,6 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const particleRgb = '34, 231, 255';
         const baseCount = window.innerWidth < 768 ? 24 : 50;
         const particleCount = Math.min(baseCount, 70);
+        const linkDistance = 150;
+        const linkDistanceSq = linkDistance * linkDistance;
+        const cellSize = linkDistance;
 
         let viewWidth = window.innerWidth;
         let viewHeight = window.innerHeight;
@@ -181,6 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
         resize();
 
         const particleColor = getCssVar('--accent-cyan', `rgb(${particleRgb})`);
+        const grid = new Map();
+        const getCellKey = (x, y) => `${x},${y}`;
 
         class Particle {
             constructor() {
@@ -189,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.vx = (Math.random() - 0.5) * 0.45;
                 this.vy = (Math.random() - 0.5) * 0.45;
                 this.size = 1 + Math.random() * 1.6;
+                this.cellX = 0;
+                this.cellY = 0;
             }
 
             update() {
@@ -213,24 +220,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function animate() {
             ctx.clearRect(0, 0, viewWidth, viewHeight);
+            grid.clear();
 
             particles.forEach((p, index) => {
                 p.update();
                 p.draw();
 
-                for (let j = index + 1; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dx = p.x - p2.x;
-                    const dy = p.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                const cellX = Math.floor(p.x / cellSize);
+                const cellY = Math.floor(p.y / cellSize);
+                p.cellX = cellX;
+                p.cellY = cellY;
 
-                    if (distance < 150) {
-                        ctx.strokeStyle = `rgba(${particleRgb}, ${0.12 * (1 - distance / 150)})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
+                const key = getCellKey(cellX, cellY);
+                const bucket = grid.get(key);
+                if (bucket) {
+                    bucket.push(index);
+                } else {
+                    grid.set(key, [index]);
+                }
+            });
+
+            // Spatial hashing to avoid O(n^2) pair checks.
+            particles.forEach((p, index) => {
+                for (let cx = p.cellX - 1; cx <= p.cellX + 1; cx++) {
+                    for (let cy = p.cellY - 1; cy <= p.cellY + 1; cy++) {
+                        const bucket = grid.get(getCellKey(cx, cy));
+                        if (!bucket) continue;
+
+                        for (const j of bucket) {
+                            if (j <= index) continue;
+                            const p2 = particles[j];
+                            const dx = p.x - p2.x;
+                            const dy = p.y - p2.y;
+                            const distanceSq = dx * dx + dy * dy;
+
+                            if (distanceSq < linkDistanceSq) {
+                                const alpha = 0.12 * (1 - distanceSq / linkDistanceSq);
+                                ctx.strokeStyle = `rgba(${particleRgb}, ${alpha})`;
+                                ctx.lineWidth = 1;
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(p2.x, p2.y);
+                                ctx.stroke();
+                            }
+                        }
                     }
                 }
             });

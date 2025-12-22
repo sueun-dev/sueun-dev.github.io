@@ -33,7 +33,7 @@ Professional portfolio website showcasing my experience as a Blockchain & Full S
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 - **Styling**: CSS Grid, Flexbox, CSS Variables, Clamp() for fluid typography
-- **Icons**: Font Awesome 6.5.1
+- **Icons**: Inline SVG sprite
 - **Fonts**: Inter (Google Fonts)
 - **SEO**: Open Graph, Twitter Cards, JSON-LD structured data
 - **Hosting**: GitHub Pages
