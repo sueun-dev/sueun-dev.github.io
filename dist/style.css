@@ -65,9 +65,7 @@ body::before {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
     font-family: var(--font-sans);
     color: var(--text-primary);
     letter-spacing: -0.02em;
