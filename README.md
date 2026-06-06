@@ -4,89 +4,119 @@
 
 ## Overview
 
-Professional portfolio website showcasing my experience as a Blockchain & Full Stack Developer. Built with modern web technologies and optimized for performance, accessibility, and SEO.
+Personal portfolio website for Sueun Cho, a Blockchain Systems Engineer. It is a single static page (`index.html`) built with plain HTML, CSS, and JavaScript — no runtime framework — and deployed via GitHub Pages. A small Node-based dev toolchain is used to purge unused CSS and to measure CSS coverage.
 
 ## Features
 
 ### 🎨 Design & UX
-- **Responsive Design**: Perfectly optimized for desktop, tablet, and mobile devices
-- **Dark Theme**: Modern dark color scheme with gradient accents
-- **Smooth Animations**: Gentle floating blockchain animation and fade-in effects
-- **Interactive Elements**: Hover effects, smooth scrolling, and dynamic navigation
+- **Responsive design**: layout adapts to desktop, tablet, and mobile
+- **Dark theme**: dark color scheme with gradient accents
+- **Animations**: floating hero animation and fade-in/scroll effects, with `prefers-reduced-motion` respected
+- **Interactive navigation**: hamburger menu, smooth scrolling, and scroll-spy that highlights the active section
 
-### 🛠️ Technical Features
-- **Pure HTML/CSS/JS**: No framework dependencies for maximum performance
-- **SEO Optimized**: Complete with meta tags, sitemap, and structured data
-- **Fast Loading**: Optimized assets and minimal dependencies
-- **Accessible**: Semantic HTML and ARIA-friendly navigation
+### 🛠️ Technical
+- **No runtime framework**: the shipped site is pure HTML/CSS/JS
+- **SEO basics**: meta description/keywords, canonical link, `robots.txt`, Open Graph and Twitter Card tags
+- **CSS build step**: [PurgeCSS](https://purgecss.com/) strips unused rules from `style.css` into `dist/style.css` (the file the page actually loads)
+- **CSS coverage tool**: a Puppeteer script reports how much CSS is actually used
+- **Accessible**: semantic HTML, ARIA attributes on the menu, skip-link, and keyboard-friendly navigation
 
 ### 📱 Sections
-- **Hero**: Eye-catching introduction with blockchain animation
-- **About**: Education and achievements overview
-- **Experience**: Professional work history and roles
-- **Activities**: Extracurricular involvement and community service
-- **Projects**: Featured blockchain and web development projects
-- **Skills**: Technical expertise categorized by domain
-- **Contact**: Multiple ways to connect
+The page is a single scrolling layout with these sections:
+- **Home** – introduction with the hero animation and resume link
+- **About** – background and interests
+- **Education**
+- **Experience** – professional work history
+- **Projects** – featured projects
+- **Activities** – extracurricular and community involvement
+- **Publications**
+- **Awards**
+- **Skills** – technical expertise by domain
+- **Contact** – ways to connect
 
 ## Technologies Used
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Styling**: CSS Grid, Flexbox, CSS Variables, Clamp() for fluid typography
-- **Icons**: Inline SVG sprite
-- **Fonts**: Inter (Google Fonts)
-- **SEO**: Open Graph, Twitter Cards, JSON-LD structured data
+- **Styling**: CSS Grid, Flexbox, CSS Variables, `clamp()` for fluid typography
+- **Icons**: inline SVG sprite
+- **Fonts**: Inter and JetBrains Mono (Google Fonts)
+- **SEO**: meta tags, Open Graph, Twitter Cards, `robots.txt`, `sitemap.xml`
+- **Tooling**: PurgeCSS, Puppeteer (`puppeteer-core`)
 - **Hosting**: GitHub Pages
 
 ## Project Structure
 
 ```
 sueun-dev.github.io/
-├── index.html          # Main HTML file with all content
-├── style.css           # Responsive styles and animations
-├── script.js           # Interactive features and animations
-├── robots.txt          # Search engine crawler instructions
-├── sitemap.xml         # Site structure for search engines
-├── google-search-setup.md  # SEO setup instructions
-└── README.md           # This file
+├── index.html              # The site (all content, loads dist/style.css)
+├── style.css               # Source stylesheet (input to PurgeCSS)
+├── dist/
+│   └── style.css           # Purged stylesheet served by the page
+├── script.js               # Navigation, smooth scroll, scroll-spy, animations
+├── purgecss.config.js      # PurgeCSS configuration
+├── tools/
+│   └── coverage.mjs        # Puppeteer-based CSS coverage report
+├── assets/
+│   └── sueun-cho-resume.pdf
+├── robots.txt              # Crawler instructions
+├── sitemap.xml             # Sitemap for search engines
+├── google-search-setup.md  # Google Search Console / SEO notes
+├── package.json            # npm scripts and dev dependencies
+└── README.md
 ```
-
-## Performance Features
-
-- **Responsive Images**: Optimized blockchain animation scaling
-- **Lazy Loading**: Efficient resource loading
-- **Smooth Scrolling**: Native CSS scroll behavior
-- **Mobile-First**: Touch-friendly interface
-- **Print Styles**: Clean layout for PDF export
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Android)
 
 ## Local Development
 
-1. Clone the repository:
+Clone the repository:
+
 ```bash
 git clone https://github.com/sueun-dev/sueun-dev.github.io.git
+cd sueun-dev.github.io
 ```
 
-2. Open `index.html` in your browser or use a local server:
+Serve the site locally (the page loads `dist/style.css`, which is committed, so no build is required to preview):
+
 ```bash
-python -m http.server 8000
+python3 -m http.server 8000
 # or
 npx serve
 ```
 
-## SEO & Analytics
+Then open http://localhost:8000.
 
-- **Sitemap**: Available at `/sitemap.xml`
-- **Robots.txt**: Configured for all search engines
-- **Meta Tags**: Complete Open Graph and Twitter Cards
-- **Structured Data**: Person schema for rich snippets
+### Build & tooling (optional)
+
+Install dev dependencies first:
+
+```bash
+npm install
+```
+
+Regenerate the purged stylesheet (`dist/style.css`) after editing `style.css`:
+
+```bash
+npm run purgecss
+```
+
+Generate a CSS coverage report (requires Google Chrome; the script launches it via `puppeteer-core`). Serve the site on `http://localhost:8000/` first, then run:
+
+```bash
+npm run coverage
+```
+
+The coverage script reads `COVERAGE_URL`, `COVERAGE_OUTPUT`, and `CHROME_PATH` environment variables and writes JSON reports to a `coverage/` directory.
+
+## SEO
+
+- **Sitemap**: referenced at `/sitemap.xml` (note: the committed `sitemap.xml` is currently empty)
+- **Robots.txt**: allows all search engines and points to the sitemap
+- **Meta tags**: description, keywords, canonical link, Open Graph, and Twitter Card
+- See `google-search-setup.md` for Search Console setup notes
+
+## Browser Support
+
+- Chrome, Firefox, Safari, Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Android)
 
 ## Contact
 
