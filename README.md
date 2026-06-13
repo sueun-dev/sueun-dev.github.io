@@ -108,7 +108,7 @@ The coverage script reads `COVERAGE_URL`, `COVERAGE_OUTPUT`, and `CHROME_PATH` e
 
 ## SEO
 
-- **Sitemap**: referenced at `/sitemap.xml` (note: the committed `sitemap.xml` is currently empty)
+- **Sitemap**: `sitemap.xml` lists the canonical homepage URL and is referenced from `robots.txt`
 - **Robots.txt**: allows all search engines and points to the sitemap
 - **Meta tags**: description, keywords, canonical link, Open Graph, and Twitter Card
 - See `google-search-setup.md` for Search Console setup notes

@@ -11,9 +11,15 @@
     "type": "git",
     "url": "git+https://github.com/sueun-dev/sueun-dev.github.io.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "portfolio",
+    "static-site",
+    "blockchain",
+    "purgecss"
+  ],
+  "author": "Sueun Cho <sueun.dev@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
   "type": "commonjs",
   "bugs": {
     "url": "https://github.com/sueun-dev/sueun-dev.github.io/issues"
