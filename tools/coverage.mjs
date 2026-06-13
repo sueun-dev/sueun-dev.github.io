@@ -14,10 +14,11 @@ const chromePath =
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const mergeRanges = (ranges) => {
+export const mergeRanges = (ranges) => {
   if (!ranges.length) return [];
   const sorted = ranges.slice().sort((a, b) => a.start - b.start);
-  const merged = [sorted[0]];
+  // Copy the seed range so we never mutate the caller's range objects.
+  const merged = [{ start: sorted[0].start, end: sorted[0].end }];
   for (const range of sorted.slice(1)) {
     const last = merged[merged.length - 1];
     if (range.start <= last.end) {
@@ -29,8 +30,35 @@ const mergeRanges = (ranges) => {
   return merged;
 };
 
-const calculateUsedBytes = (ranges) =>
+export const calculateUsedBytes = (ranges) =>
   mergeRanges(ranges).reduce((sum, range) => sum + (range.end - range.start), 0);
+
+export const summarizeCoverage = (cssCoverage) =>
+  cssCoverage.map((entry) => {
+    const usedBytes = calculateUsedBytes(entry.ranges);
+    const totalBytes = entry.text.length;
+    const unusedBytes = totalBytes - usedBytes;
+    const percentUsed = totalBytes === 0 ? 0 : (usedBytes / totalBytes) * 100;
+
+    return {
+      url: entry.url,
+      totalBytes,
+      usedBytes,
+      unusedBytes,
+      percentUsed: Number(percentUsed.toFixed(2)),
+    };
+  });
+
+export const totalCoverage = (summary) =>
+  summary.reduce(
+    (acc, item) => {
+      acc.totalBytes += item.totalBytes;
+      acc.usedBytes += item.usedBytes;
+      acc.unusedBytes += item.unusedBytes;
+      return acc;
+    },
+    { totalBytes: 0, usedBytes: 0, unusedBytes: 0 }
+  );
 
 const scrollPage = async (page) => {
   await page.evaluate(async () => {
@@ -126,20 +154,7 @@ const run = async () => {
   const cssCoverage = await page.coverage.stopCSSCoverage();
   await browser.close();
 
-  const summary = cssCoverage.map((entry) => {
-    const usedBytes = calculateUsedBytes(entry.ranges);
-    const totalBytes = entry.text.length;
-    const unusedBytes = totalBytes - usedBytes;
-    const percentUsed = totalBytes === 0 ? 0 : (usedBytes / totalBytes) * 100;
-
-    return {
-      url: entry.url,
-      totalBytes,
-      usedBytes,
-      unusedBytes,
-      percentUsed: Number(percentUsed.toFixed(2)),
-    };
-  });
+  const summary = summarizeCoverage(cssCoverage);
 
   const summaryPath = path.join(outputDir, 'css-coverage-summary.json');
   const rawPath = path.join(outputDir, 'css-coverage.json');
@@ -147,15 +162,7 @@ const run = async () => {
   await fs.writeFile(summaryPath, JSON.stringify(summary, null, 2));
   await fs.writeFile(rawPath, JSON.stringify(cssCoverage, null, 2));
 
-  const total = summary.reduce(
-    (acc, item) => {
-      acc.totalBytes += item.totalBytes;
-      acc.usedBytes += item.usedBytes;
-      acc.unusedBytes += item.unusedBytes;
-      return acc;
-    },
-    { totalBytes: 0, usedBytes: 0, unusedBytes: 0 }
-  );
+  const total = totalCoverage(summary);
 
   const percentUsed =
     total.totalBytes === 0 ? 0 : (total.usedBytes / total.totalBytes) * 100;
@@ -168,7 +175,11 @@ const run = async () => {
   console.log(`Report: ${summaryPath}`);
 };
 
-run().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+const isMainModule = process.argv[1] === __filename;
+
+if (isMainModule) {
+  run().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
