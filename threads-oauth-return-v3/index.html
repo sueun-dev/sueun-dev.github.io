@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Return to Threads Engagement Desk</title>
+  <body>
+    <main>
+      <h1>Return to Threads Engagement Desk</h1>
+      <p>The one-time OAuth response is ready. This page does not store a token.</p>
+      <p><a id="return" href="http://127.0.0.1:7437/oauth/threads/callback">Return to the local app</a></p>
+    </main>
+    <script>
+      (() => {
+        const allowed = ["code", "state", "error", "error_description", "error_reason"];
+        const destination = new URL("http://127.0.0.1:7437/oauth/threads/callback");
+        const source = new URLSearchParams(window.location.search);
+        for (const key of allowed) {
+          const value = source.get(key);
+          if (value) destination.searchParams.set(key, value);
+        }
+        if (!source.has("code") && !source.has("error")) {
+          document.querySelector("main").innerHTML = "<h1>Missing OAuth response</h1><p>Return to the local app and start the connection again.</p>";
+          return;
+        }
+        document.querySelector("#return").href = destination.toString();
+      })();
+    </script>
+  </body>
+</html>
