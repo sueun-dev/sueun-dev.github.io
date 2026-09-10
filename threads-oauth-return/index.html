@@ -12,7 +12,7 @@
     <script>
       (() => {
         const allowed = ["code", "state", "error", "error_description", "error_reason"];
-        const destination = new URL("http://localhost:7437/oauth/threads/callback");
+        const destination = new URL("http://127.0.0.1:7437/oauth/threads/callback");
         const source = new URLSearchParams(window.location.search);
         for (const key of allowed) {
           const value = source.get(key);
