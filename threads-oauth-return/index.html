@@ -22,7 +22,12 @@
           document.querySelector("main").innerHTML = "<h1>Missing OAuth response</h1><p>Return to the local app and start the connection again.</p>";
           return;
         }
-        window.location.replace(destination.toString());
+        // Give constrained in-app browsers a brief chance to hand the one-time
+        // response to their local runtime. Ordinary browsers still return to
+        // the local desk automatically.
+        window.__threadsOAuthRelayTimer = window.setTimeout(() => {
+          window.location.replace(destination.toString());
+        }, 8000);
       })();
     </script>
   </body>
