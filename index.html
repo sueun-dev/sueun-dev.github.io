@@ -219,6 +219,7 @@
                 <li><a href="#about" class="nav-link">ABOUT</a></li>
                 <li><a href="#education" class="nav-link">EDUCATION</a></li>
                 <li><a href="#experience" class="nav-link">EXPERIENCE</a></li>
+                <li><a href="#open-source" class="nav-link">OPEN SOURCE</a></li>
                 <li><a href="#projects" class="nav-link">PROJECTS</a></li>
                 <li><a href="#activities" class="nav-link">ACTIVITIES</a></li>
                 <li><a href="#publications" class="nav-link">PUBLICATIONS</a></li>
@@ -240,7 +241,7 @@
             <div class="container">
                 <div>
                     <h1 class="hero-title">Sueun <span>Cho</span></h1>
-                    <h2 class="hero-subtitle">Blockchain Systems Engineer</h2>
+                    <h2 class="hero-subtitle">M.S. Computer Science @ Northwestern · Blockchain Systems Engineer</h2>
                     <p class="hero-description">
                         I build secure smart contract protocols, validator infrastructure, and production backends —
                         focused on security, correctness, and performance (gas optimization).
@@ -278,8 +279,9 @@
                     </p>
                     <p class="muted">
                         Strong focus on security, correctness, and performance (gas optimization), with experience
-                        leading engineering teams and shipping revenue-impacting products. Interests include blockchain
-                        security, consensus reliability, and formal methods for decentralized systems.
+                        leading engineering teams and shipping revenue-impacting products. Research interests: Bitcoin
+                        transaction selection and mempool linearization, block-template optimization, and Nakamoto
+                        consensus.
                     </p>
                     <div class="stats" role="group" aria-label="Highlights">
                         <div class="stat">
@@ -306,13 +308,28 @@
         <section id="education" class="education">
             <div class="container">
                 <h2 class="section-title">Education</h2>
+                <div class="cards-grid">
+                <div class="card-style">
+                    <div class="education-top">
+                        <div>
+                            <h3 class="education-school">Northwestern University</h3>
+                            <p class="education-degree">M.S. Computer Science</p>
+                        </div>
+                        <div class="pill">Sep 2026 - Present</div>
+                    </div>
+                    <div class="tag-list" role="group" aria-label="Current coursework">
+                        <span class="tag">Artificial Intelligence Programming</span>
+                        <span class="tag">Rapid Prototyping for Software Innovation</span>
+                        <span class="tag">Internet Security</span>
+                    </div>
+                </div>
                 <div class="card-style">
                     <div class="education-top">
                         <div>
                             <h3 class="education-school">University of Maryland, College Park</h3>
                             <p class="education-degree">B.S. Computer Science • Minor in General Business</p>
                         </div>
-                        <div class="pill">Expected May 2026</div>
+                        <div class="pill">May 2026</div>
                     </div>
                     <p class="muted education-meta">GPA: 3.66 / 4.00</p>
                     <div class="tag-list" role="group" aria-label="Relevant coursework">
@@ -324,6 +341,7 @@
                         <span class="tag">Formal Languages</span>
                         <span class="tag">Computer Vision</span>
                     </div>
+                </div>
                 </div>
             </div>
         </section>
@@ -393,10 +411,124 @@
             </div>
         </section>
 
+        <section id="open-source" class="experience">
+            <div class="container">
+                <h2 class="section-title">Open Source</h2>
+                <div class="card-style">
+                    <p class="lead">
+                        68 merged pull requests across 50 open-source projects with 10+ stars, as of November 2026.
+                    </p>
+                    <p class="muted">
+                        Bug fixes with regression tests in monitoring, supply-chain security, database, and
+                        infrastructure projects.
+                    </p>
+                    <ul class="bullet-list">
+                        <li><strong>Monitoring &amp; networking</strong> — prometheus/prometheus, prometheus/alertmanager, coredns/coredns</li>
+                        <li><strong>Supply-chain security</strong> — aquasecurity/trivy, anchore/syft, open-policy-agent/opa,
+                            cert-manager/cert-manager, protobom/protobom</li>
+                        <li><strong>Databases &amp; data</strong> — jackc/pgx, redis/go-redis, SeaQL/sea-orm,
+                            klauspost/compress</li>
+                        <li><strong>Web &amp; tooling</strong> — gofiber/fiber, goreleaser/goreleaser, nats-io/nats.go,
+                            agronholm/apscheduler</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/sueun-dev#open-source-contributions" target="_blank"
+                            rel="noopener noreferrer">
+                            <svg class="icon" aria-hidden="true" focusable="false"><use
+                                    href="#icon-code"></use></svg> Live list on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="projects" class="projects">
             <div class="container">
                 <h2 class="section-title">Technical Projects</h2>
                 <div class="projects-grid">
+
+                    <!-- NU Campus Walk -->
+                    <div class="project-card">
+                        <div class="project-icon"><svg class="icon" aria-hidden="true" focusable="false"><use
+                                    href="#icon-location"></use></svg></div>
+                        <h3 class="project-title">NU Campus Walk</h3>
+                        <div class="project-role">Personal Project</div>
+                        <div class="project-date">Oct 2026</div>
+                        <p>Walking routes on Northwestern&#39;s Evanston campus that stay indoors, in the shade, and off the stairs — A* routing with sun position and building shadows.</p>
+                        <div class="tag-list">
+                            <span class="tag">Python</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">MapLibre</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sueun-dev/nu-campus-nav" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true" focusable="false"><use
+                                        href="#icon-code"></use></svg> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Motion Effects -->
+                    <div class="project-card">
+                        <div class="project-icon"><svg class="icon" aria-hidden="true" focusable="false"><use
+                                    href="#icon-chart"></use></svg></div>
+                        <h3 class="project-title">Motion Effects</h3>
+                        <div class="project-role">Personal Project</div>
+                        <div class="project-date">Oct 2026</div>
+                        <p>278 motion effects and 3D graphics techniques, each as one code file rendered to a 5-second vertical video, with copy-paste prompts in English and Korean.</p>
+                        <div class="tag-list">
+                            <span class="tag">Canvas 2D</span>
+                            <span class="tag">WebGL</span>
+                            <span class="tag">three.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sueun-dev/motion-effects" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true" focusable="false"><use
+                                        href="#icon-code"></use></svg> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- AICreditsBar -->
+                    <div class="project-card">
+                        <div class="project-icon"><svg class="icon" aria-hidden="true" focusable="false"><use
+                                    href="#icon-laptop"></use></svg></div>
+                        <h3 class="project-title">AICreditsBar</h3>
+                        <div class="project-role">Personal Project</div>
+                        <div class="project-date">Jun 2026</div>
+                        <p>Native macOS menu-bar app showing how much of the Codex and Claude plan limits is left, using the same provider-reported numbers as /status and /usage.</p>
+                        <div class="tag-list">
+                            <span class="tag">Swift</span>
+                            <span class="tag">macOS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sueun-dev/AICreditsBar" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true" focusable="false"><use
+                                        href="#icon-code"></use></svg> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Claude Pet -->
+                    <div class="project-card">
+                        <div class="project-icon"><svg class="icon" aria-hidden="true" focusable="false"><use
+                                    href="#icon-robot"></use></svg></div>
+                        <h3 class="project-title">Claude Pet</h3>
+                        <div class="project-role">Personal Project</div>
+                        <div class="project-date">Oct 2026</div>
+                        <p>Claude Code sessions in the macOS menu bar: session status, alerts, and permission prompts in a Liquid Glass panel.</p>
+                        <div class="tag-list">
+                            <span class="tag">Swift</span>
+                            <span class="tag">macOS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sueun-dev/claude-pet" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true" focusable="false"><use
+                                        href="#icon-code"></use></svg> GitHub
+                            </a>
+                        </div>
+                    </div>
 
                     <!-- CoinHelio -->
                     <div class="project-card">
@@ -644,6 +776,18 @@
             <div class="container">
                 <h2 class="section-title">Awards &amp; Honors</h2>
                 <div class="cards-grid">
+                    <div class="card-style">
+                        <h3 class="card-title">Kernel Optimization: 1,146 Cycles</h3>
+                        <p class="muted">Anthropic&#39;s original performance take-home • Rank #64 on the community leaderboard</p>
+                        <p class="muted">Hand-optimized a kernel for a simulated VLIW machine, below every Claude
+                            reference result listed in the take-home README (best: 1,363 cycles).</p>
+                        <div class="project-links">
+                            <a href="https://www.kerneloptimization.fun/" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true" focusable="false"><use
+                                        href="#icon-external"></use></svg> Leaderboard
+                            </a>
+                        </div>
+                    </div>
                     <div class="card-style">
                         <h3 class="card-title">OMSE Academic Excellence Society (OAES)</h3>
                         <p class="muted">Member • University of Maryland</p>
