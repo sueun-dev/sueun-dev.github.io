@@ -121,9 +121,7 @@ The coverage script reads `COVERAGE_URL`, `COVERAGE_OUTPUT`, and `CHROME_PATH` e
 ## Contact
 
 - **Email**: sueun.dev@gmail.com
-- **Phone**: +1 240-413-4402
 - **GitHub**: [@sueun-dev](https://github.com/sueun-dev)
-- **Location**: Hyattsville, MD 20782
 
 ## License
 
