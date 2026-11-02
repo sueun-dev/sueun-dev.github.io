@@ -28,7 +28,7 @@
   "homepage": "https://github.com/sueun-dev/sueun-dev.github.io#readme",
   "devDependencies": {
     "jsdom": "^29.1.1",
-    "puppeteer-core": "^24.34.0",
-    "purgecss": "^7.0.2"
+    "puppeteer-core": "^25.16.0",
+    "purgecss": "^8.0.0"
   }
 }

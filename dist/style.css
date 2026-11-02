@@ -443,10 +443,6 @@ section {
     font-weight: 400;
 }
 
-.publications-cta {
-    text-align: center;
-}
-
 .education-top {
     display: flex;
     justify-content: space-between;
@@ -785,10 +781,6 @@ section {
 .contact-item .icon {
     color: var(--accent-cyan);
     font-size: 1.2rem;
-}
-
-.contact-item-static {
-    cursor: default;
 }
 
 /* Footer */
