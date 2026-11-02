@@ -416,32 +416,6 @@ section {
 }
 
 /* Publications Card */
-.publications-card {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.publications-content {
-    flex: 1;
-}
-
-.publications-title {
-    font-family: var(--font-sans);
-    font-size: 1.25rem;
-    margin-bottom: 0.35rem;
-    color: var(--accent-cyan);
-}
-
-.publications-subtitle {
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    margin-bottom: 0.9rem;
-    color: var(--text-secondary);
-    font-weight: 400;
-}
 
 .education-top {
     display: flex;
@@ -942,14 +916,6 @@ section {
     }
 
     /* Publications Card Mobile */
-    .publications-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .publications-card>div {
-        width: 100%;
-    }
 
     .cards-grid {
         grid-template-columns: 1fr;
