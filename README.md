@@ -125,7 +125,7 @@ The coverage script reads `COVERAGE_URL`, `COVERAGE_OUTPUT`, and `CHROME_PATH` e
 
 ## License
 
-© 2025 Sueun Cho. All rights reserved.
+Code is released under the [MIT License](LICENSE). Personal content (text, resume, and images) © 2026 Sueun Cho.
 
 ---
 

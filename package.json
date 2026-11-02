@@ -19,7 +19,7 @@
     "purgecss"
   ],
   "author": "Sueun Cho <sueun.dev@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "type": "commonjs",
   "bugs": {
